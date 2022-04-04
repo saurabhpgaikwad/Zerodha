@@ -1,0 +1,69 @@
+
+	
+	public static void main(String[] args) throws EncryptedDocumentException, IOException, InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", Path.DriverPath);
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://login.yahoo.com/account/create?.intl=in&.lang=en-IN&src=search&activity=header-signin&pspid=2114723002&.done=https%3A%2F%2Fin.search.yahoo.com%2F%3Ffr2%3Dinr&specId=yidReg&done=https%3A%2F%2Fin.search.yahoo.com%2F%3Ffr2%3Dinr");
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		
+		FileInputStream xlfile = new FileInputStream(Path.Google_form);
+		
+		
+		Sheet wb = WorkbookFactory.create(xlfile).getSheet("Sheet2");
+		
+		
+		String name = wb.getRow(2).getCell(1).getStringCellValue();
+		
+		System.out.println(name);
+		driver.findElement(By.xpath("//input[@id=\"usernamereg-firstName\"]")).sendKeys(name);
+		Thread.sleep(2000);
+		
+		String LName = wb.getRow(2).getCell(2).getStringCellValue();
+		System.out.println(LName);
+		driver.findElement(By.xpath("//input[@id='usernamereg-lastName']")).sendKeys(LName);
+		Thread.sleep(2000);
+		
+		String email = wb.getRow(3).getCell(1).getStringCellValue();
+		System.out.println(email);
+		driver.findElement(By.xpath("//input[@id='usernamereg-yid']")).sendKeys(email);
+		
+		
+		String pass = wb.getRow(4).getCell(1).getStringCellValue();
+		System.out.println(pass);
+		driver.findElement(By.xpath("//input[@id='usernamereg-password']")).sendKeys(pass);
+		Thread.sleep(2000);
+		
+		String phone = wb.getRow(5).getCell(1).getStringCellValue();
+		System.out.println(phone);
+		driver.findElement(By.xpath("//input[@id='usernamereg-phone']")).sendKeys(phone);
+		Thread.sleep(2000);
+	
+		WebElement dt = driver.findElement(By.xpath("//select[@id='usernamereg-month']"));
+		Thread.sleep(2000);
+		
+		Select sdt = new Select(dt);
+		sdt.selectByIndex(1);
+		boolean abc = sdt.isMultiple();
+		System.out.println(abc);
+		Thread.sleep(2000);
+		
+		
+		String day = wb.getRow(7).getCell(1).getStringCellValue();
+		System.out.println(day);
+		driver.findElement(By.xpath("//input[@id='usernamereg-day']")).sendKeys(day);
+		Thread.sleep(2000);
+		
+		String year = wb.getRow(8).getCell(1).getStringCellValue();
+		System.out.println(year);
+		driver.findElement(By.xpath("//input[@id='usernamereg-year']")).sendKeys(year);
+		Thread.sleep(2000);
+		
+		String gender = wb.getRow(6).getCell(1).getStringCellValue();
+		System.out.println(gender);
+		driver.findElement(By.xpath("//input[@id='usernamereg-freeformGender']")).sendKeys(gender);
+		
+	}
