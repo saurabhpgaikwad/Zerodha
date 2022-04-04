@@ -1,0 +1,10 @@
+public String readXL(int row, int cell) throws EncryptedDocumentException, IOException
+	{
+		FileInputStream xlfle = new FileInputStream(Path.Google_form);
+		
+		String value = WorkbookFactory.create(xlfle).getSheet("Sheet3").getRow(row).getCell(cell).getStringCellValue();
+		
+		return value;
+		
+		
+	}
