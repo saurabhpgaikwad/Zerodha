@@ -30,3 +30,9 @@ public class Test {
 	}driver.quit();
   }
 }
+
+
+System.setProperty("webdriver.chrome.driver",Configuration.chromePath);
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com/");
